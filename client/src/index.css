@@ -3,6 +3,7 @@
   --color-light: #fff;
   --color-gray: #f8eded;
   --color-danger: #ef5a6f;
+  --color-peach: #f7dcb9;
 }
 
 body {
@@ -58,5 +59,55 @@ nav .brand-heading {
 .player {
   background-color: var(--color-danger);
   width: 100%;
+  padding: 1.4rem;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.listitem {
+  width: 90%;
+  background-color: var(--color-light);
   padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listitem span {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+}
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: var(--color-peach);
+}
+
+.sidebar-container {
+  padding: 1rem;
+}
+
+.options {
+  background-color: var(--color-gray);
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.options span {
+  margin-left: 2rem;
+  font-weight: 500;
+}
+
+.tracks {
+  flex: 5;
 }
