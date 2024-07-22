@@ -2,8 +2,13 @@ const Music = require("../model/musicSchema");
 
 let statusCode = 500;
 
-const getAllMusic = (req, res) => {
-  res.send("All Music Will be Served from here");
+const getAllMusic = async (req, res) => {
+  try {
+    const music = await Music.find();
+    res.status(200).json(music);
+  } catch (e) {
+    res.status(statusCode).json({ error: e.message });
+  }
 };
 
 const addNewMusic = async (req, res) => {
