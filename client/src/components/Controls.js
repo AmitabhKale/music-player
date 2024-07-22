@@ -8,9 +8,7 @@ import {
   IoPauseSharp,
 } from "react-icons/io5";
 
-const Controls = ({ audioRef }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
+const Controls = ({ audioRef, isPlaying, setIsPlaying }) => {
   useEffect(() => {
     if (isPlaying) {
       audioRef.current.play();
@@ -29,16 +27,11 @@ const Controls = ({ audioRef }) => {
         <button>
           <IoPlaySkipBackSharp />
         </button>
-        <button>
-          <IoPlayBackSharp />
-        </button>
 
         <button onClick={togglePlayPause}>
           {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
         </button>
-        <button>
-          <IoPlayForwardSharp />
-        </button>
+
         <button>
           <IoPlaySkipForwardSharp />
         </button>

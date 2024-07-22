@@ -1,4 +1,5 @@
 import React from "react";
+import formatTime from "../utils/formatTime";
 
 const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
   const handleProgressChange = () => {
@@ -8,14 +9,14 @@ const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
 
   return (
     <div className="progress">
-      <span className="time current">{timeProgress}</span>
+      <span className="time current">{formatTime(timeProgress)}</span>
       <input
         type="range"
         defaultValue={0}
         ref={progressBarRef}
         onChange={handleProgressChange}
       />
-      <span className="time">{duration}</span>
+      <span className="time">{formatTime(duration)}</span>
     </div>
   );
 };

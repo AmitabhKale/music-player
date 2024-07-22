@@ -3,9 +3,13 @@ import axios from "axios";
 import Player from "./components/Player";
 import Tracks from "./components/Tracks";
 import Sidebar from "./components/Sidebar";
+import "./custom.css";
 
 function App() {
   const [songs, setSongs] = useState([]);
+  const [songChosed, setSongChosed] = useState({});
+  console.log(songChosed);
+
   // const [songName, setSongName] = useState("");
 
   let API_URL = "http://localhost:5000/api/music";
@@ -45,11 +49,13 @@ function App() {
       </nav>
       <div className="layout">
         <Sidebar />
-        {songs.length !== 0 && <Tracks songs={songs} />}
+        {songs.length !== 0 && (
+          <Tracks songs={songs} setSongChosed={setSongChosed} />
+        )}
         {/* <AudioPlayer /> */}
       </div>
       <div className="player-container">
-        <Player />
+        {songChosed.title} && <Player song={songChosed} />
         {/* <Player songName={songName} /> */}
       </div>
     </div>
