@@ -4,25 +4,24 @@ import Player from "./components/Player";
 import Tracks from "./components/Tracks";
 import Sidebar from "./components/Sidebar";
 import "./custom.css";
+import Loader from "./components/Loader";
 
 function App() {
   const [songs, setSongs] = useState([]);
   const [songChosed, setSongChosed] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   console.log(songChosed);
-
-  // const [songName, setSongName] = useState("");
 
   let API_URL = "http://localhost:5000/api/music";
 
-  // let songName = songs[2].music.filename;
-
   useEffect(() => {
     try {
+      setIsLoading(true);
       const fetchMusic = async () => {
         const res = await axios.get(API_URL);
         console.log(res.data);
         setSongs(res.data);
-        // setSongName(songs[2].music.filename);
+        setIsLoading(false);
       };
 
       fetchMusic();
@@ -30,10 +29,6 @@ function App() {
       console.log(e);
     }
   }, [API_URL]);
-
-  // useEffect(() => {
-  //   setSongName(songs[0].music.filename);
-  // });
 
   return (
     <div className="App">
@@ -47,17 +42,26 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className="layout">
-        <Sidebar />
-        {songs.length !== 0 && (
-          <Tracks songs={songs} setSongChosed={setSongChosed} />
-        )}
-        {/* <AudioPlayer /> */}
-      </div>
-      <div className="player-container">
-        {songChosed.title} && <Player song={songChosed} />
-        {/* <Player songName={songName} /> */}
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="layout">
+          <Sidebar />
+          {songs.length !== 0 && (
+            <Tracks songs={songs} setSongChosed={setSongChosed} />
+            // <Tracks songs={songs} setSongName={setSongName} />
+          )}
+          {/* <AudioPlayer /> */}
+        </div>
+      )}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="player-container">
+          <Player song={songChosed} />
+          {/* <Player songName={songName} /> */}
+        </div>
+      )}
     </div>
   );
 }

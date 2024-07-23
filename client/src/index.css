@@ -5,6 +5,7 @@
   --color-danger: #ef5a6f;
   --color-green: #658147;
   --color-peach: #f7dcb9;
+  --text-color: #222;
 }
 
 body {
@@ -119,8 +120,9 @@ nav .brand-heading {
 }
 
 .current-details {
-  background-color: var(--color-primary);
+  background-color: var(--color-light);
   flex: 2;
+  padding: 1.4rem 1rem;
 }
 
 .song-controls {
@@ -222,3 +224,13 @@ nav .brand-heading {
   font-size: 1.6rem;
 }
 /*  */
+
+.song-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.song-artist {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}

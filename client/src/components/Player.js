@@ -8,21 +8,26 @@ const Player = ({ song }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const progressBarRef = useRef();
-  // const SONG_URL =
-  //   "http://localhost:5000/songs/2024-07-20T15-44-59.390Zalotofmusic.org - Maggie Lindemann - Obsessed.mp3";
 
-  const songName = song.music.filename;
+  const songName = isSelected && song.music.filename;
   console.log(songName);
   const SONG_URL = `http://localhost:5000/songs/${songName}`;
+
   const audioRef = useRef();
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (songName.length !== 0) {
+    if (songName) {
       setIsSelected(true);
       audioRef.current.play();
       setIsPlaying(true);
+    }
+  }, [songName]);
+
+  useEffect(() => {
+    if (Object.keys(song).length) {
+      setIsSelected(true);
     }
   }, [song]);
 
@@ -45,7 +50,7 @@ const Player = ({ song }) => {
       />
 
       <div className="player-items">
-        <SongDetails />
+        <SongDetails song={song} />
 
         <div className="song-controls">
           <div className="controls-placement">
@@ -53,6 +58,7 @@ const Player = ({ song }) => {
               audioRef={audioRef}
               isPlaying={isPlaying}
               setIsPlaying={setIsPlaying}
+              isSelected={isSelected}
             />
           </div>
 
