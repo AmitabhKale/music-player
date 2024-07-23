@@ -5,10 +5,12 @@ import Tracks from "./components/Tracks";
 import Sidebar from "./components/Sidebar";
 import "./custom.css";
 import Loader from "./components/Loader";
+import { GiMusicSpell } from "react-icons/gi";
 
 function App() {
   const [songs, setSongs] = useState([]);
   const [songChosed, setSongChosed] = useState({});
+  // const [trackIndex, setTrackIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   console.log(songChosed);
 
@@ -35,7 +37,9 @@ function App() {
       <nav>
         <div className="container">
           <div className="nav-box">
-            <span className="brand-heading">Music Player</span>
+            <span className="brand-heading">
+              <GiMusicSpell /> Music Player
+            </span>
             {/* <div className="sub-menu">
               <button>Login</button>
             </div> */}
@@ -54,14 +58,14 @@ function App() {
           {/* <AudioPlayer /> */}
         </div>
       )}
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loader />
-      ) : (
-        <div className="player-container">
-          <Player song={songChosed} />
-          {/* <Player songName={songName} /> */}
-        </div>
-      )}
+      ) : ( */}
+      <div className="player-container">
+        <Player song={songChosed} />
+        {/* <Player songName={songName} /> */}
+      </div>
+      {/* )} */}
     </div>
   );
 }

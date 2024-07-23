@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import Controls from "./Controls";
+import { FaVolumeUp, FaVolumeDown } from "react-icons/fa";
 import ProgressBar from "./ProgressBar";
 import SongDetails from "./SongDetails";
 
 const Player = ({ song }) => {
   const [isSelected, setIsSelected] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-
   const progressBarRef = useRef();
+  const [volume, setVolume] = useState(60);
 
   const songName = isSelected && song.music.filename;
-  console.log(songName);
+  // console.log(songName);
   const SONG_URL = `http://localhost:5000/songs/${songName}`;
 
   const audioRef = useRef();
@@ -19,11 +19,10 @@ const Player = ({ song }) => {
 
   useEffect(() => {
     if (songName) {
+      // console.log(songName);
       setIsSelected(true);
-      audioRef.current.play();
-      setIsPlaying(true);
     }
-  }, [songName]);
+  }, [songName, isSelected]);
 
   useEffect(() => {
     if (Object.keys(song).length) {
@@ -31,8 +30,14 @@ const Player = ({ song }) => {
     }
   }, [song]);
 
+  useEffect(() => {
+    if (audioRef) {
+      audioRef.current.volume = volume / 100;
+    }
+  }, [volume, audioRef]);
+
   const onLoadedMetadata = () => {
-    console.log(audioRef.current.duration);
+    // console.log(audioRef.current.duration);
     const seconds = audioRef.current.duration;
     setDuration(seconds);
     progressBarRef.current.max = seconds;
@@ -43,7 +48,7 @@ const Player = ({ song }) => {
       {/* <span>{songs[0].title}</span> */}
       {/* <audio src="/songs/sarfira.mp3" type="audio/mpeg" controls /> */}
       <audio
-        src={SONG_URL}
+        src={isSelected ? SONG_URL : ""}
         type="audio/mpeg"
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
@@ -56,9 +61,10 @@ const Player = ({ song }) => {
           <div className="controls-placement">
             <Controls
               audioRef={audioRef}
-              isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying}
               isSelected={isSelected}
+              progressBarRef={progressBarRef}
+              setTimeProgress={setTimeProgress}
+              duration={duration}
             />
           </div>
 
@@ -69,7 +75,22 @@ const Player = ({ song }) => {
             duration={duration}
           />
         </div>
-        <div className="extra-options"></div>
+        <div className="extra-options">
+          <div className="volume">
+            {/* <button>icons</button> */}
+            <FaVolumeDown fill="#fff" />
+            <input
+              type="range"
+              value={volume}
+              onChange={(e) => {
+                setVolume(e.target.value);
+              }}
+              min={0}
+              max={100}
+            />
+            <FaVolumeUp fill="#fff" size={"32px"} />
+          </div>
+        </div>
       </div>
     </div>
   );

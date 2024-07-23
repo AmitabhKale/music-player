@@ -7,7 +7,6 @@ const Tracks = ({ songs, setSongChosed }) => {
   function handleClick(song) {
     if (song) {
       console.log(song.title);
-
       setSongChosed(song);
     }
   }
@@ -15,7 +14,7 @@ const Tracks = ({ songs, setSongChosed }) => {
     <div className="tracks">
       <ul className="playlist">
         {songs.map((song) => (
-          <div key={song._id} className="song">
+          <div key={song._id} className={"song"}>
             {/* <div className=""> */}
             <div className="thumb"></div>
             <div className="body">

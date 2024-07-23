@@ -5,7 +5,9 @@
   --color-danger: #ef5a6f;
   --color-green: #658147;
   --color-peach: #f7dcb9;
+  --color-disabled: #999;
   --text-color: #222;
+  --color-player: #666666;
 }
 
 body {
@@ -47,7 +49,7 @@ nav .brand-heading {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1340px;
   margin: 0 auto;
 }
 
@@ -59,7 +61,7 @@ nav .brand-heading {
 }
 
 .player {
-  background-color: var(--color-danger);
+  background-color: var(--color-player);
   width: 100%;
   /* min-height: 5rem; */
   /* padding: 1.4rem; */
@@ -120,9 +122,10 @@ nav .brand-heading {
 }
 
 .current-details {
-  background-color: var(--color-light);
+  background-color: var(--color-player);
   flex: 2;
   padding: 1.4rem 1rem;
+  display: flex;
 }
 
 .song-controls {
@@ -131,7 +134,7 @@ nav .brand-heading {
 }
 
 .extra-options {
-  background-color: var(--color-green);
+  background-color: var(--color-player);
   flex: 3;
 }
 
@@ -143,10 +146,16 @@ nav .brand-heading {
 }
 
 .controls-placement {
+  padding-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  /* gap: 1rem; */
+}
+
+.controls-wrapper {
+  width: 30rem;
+  /* display: flex; */
 }
 
 .time {
@@ -171,10 +180,11 @@ nav .brand-heading {
 
 .song:hover {
   cursor: pointer;
+  background-color: var(--color-danger);
 }
 
 .song.active {
-  background-color: var(--primary-color);
+  background-color: var(--color-danger);
 }
 
 .song:active {
@@ -228,9 +238,69 @@ nav .brand-heading {
 .song-title {
   font-size: 1.8rem;
   margin-bottom: 1rem;
+  color: var(--color-gray);
 }
 
 .song-artist {
+  display: block;
   font-size: 1.2rem;
-  color: var(--text-color);
+  color: var(--color-gray);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* gap: 2rem; */
+}
+
+.prevbtn,
+.nextbtn,
+.playpause {
+  border: 0;
+  outline: 0;
+  font-size: 2.2rem;
+  background: none;
+  color: #eee;
+  cursor: pointer;
+}
+
+.playpause {
+  font-size: 3rem;
+  /* position: absolute; */
+  /* background: var(--color-primary); */
+  /* height: 4.5rem;
+  width: 4.5rem; */
+  color: var(--color-gray);
+  border-radius: 50%;
+  /* display: grid;
+  place-items: center; */
+}
+
+.playpause:disabled {
+  color: var(--color-disabled);
+}
+
+.current-play {
+  position: relative;
+  display: inline-block;
+  left: 0.1rem;
+}
+
+.thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: var(--color-gray);
+  background-size: cover;
+  margin: 0 1.6rem 0 0.8rem;
+}
+
+.volume {
+  width: 12rem;
+  margin: 2rem 0 0 3rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 2.4rem;
 }
