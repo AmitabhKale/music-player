@@ -1,72 +1,55 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Player from "./components/Player";
-import Tracks from "./components/Tracks";
 import Sidebar from "./components/Sidebar";
 import "./custom.css";
-import Loader from "./components/Loader";
 import { GiMusicSpell } from "react-icons/gi";
+import Home from "./pages/Home";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Playlist from "./pages/Playlist";
 
 function App() {
-  const [songs, setSongs] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
   const [songChosed, setSongChosed] = useState({});
-  // const [trackIndex, setTrackIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  console.log(songChosed);
-
-  let API_URL = "http://localhost:5000/api/music";
-
-  useEffect(() => {
-    try {
-      setIsLoading(true);
-      const fetchMusic = async () => {
-        const res = await axios.get(API_URL);
-        console.log(res.data);
-        setSongs(res.data);
-        setIsLoading(false);
-      };
-
-      fetchMusic();
-    } catch (e) {
-      console.log(e);
-    }
-  }, [API_URL]);
 
   return (
-    <div className="App">
-      <nav>
-        <div className="container">
-          <div className="nav-box">
-            <span className="brand-heading">
-              <GiMusicSpell /> Music Player
-            </span>
-            {/* <div className="sub-menu">
+    <BrowserRouter>
+      <div className="App">
+        <nav>
+          <div className="container">
+            <div className="nav-box">
+              <Link to={"/"}>
+                <span className="brand-heading">
+                  <GiMusicSpell /> Music Player
+                </span>
+              </Link>
+              {/* <div className="sub-menu">
               <button>Login</button>
-            </div> */}
+              </div> */}
+            </div>
           </div>
-        </div>
-      </nav>
-      {isLoading ? (
+        </nav>
+        {/* {isLoading ? (
         <Loader />
-      ) : (
+        ) : ( */}
         <div className="layout">
           <Sidebar />
-          {songs.length !== 0 && (
-            <Tracks songs={songs} setSongChosed={setSongChosed} />
-            // <Tracks songs={songs} setSongName={setSongName} />
-          )}
-          {/* <AudioPlayer /> */}
+          <div className="main">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home songChosed={songChosed} setSongChosed={setSongChosed} />
+                }
+              />
+              <Route path="/playlist/1" element={<Playlist />} />
+            </Routes>
+          </div>
         </div>
-      )}
-      {/* {isLoading ? (
-        <Loader />
-      ) : ( */}
-      <div className="player-container">
-        <Player song={songChosed} />
-        {/* <Player songName={songName} /> */}
+        <div className="player-container">
+          <Player song={songChosed} />
+        </div>
       </div>
-      {/* )} */}
-    </div>
+    </BrowserRouter>
   );
 }
 
