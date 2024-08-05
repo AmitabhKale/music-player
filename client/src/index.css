@@ -138,15 +138,20 @@ nav .brand-heading {
   display: flex;
 }
 
-.current-details {
-  background-color: var(--color-player);
+.song-current-details {
   flex: 2;
-  padding: 1.4rem 1rem;
+  background-color: var(--color-player);
+}
+
+.current-details {
+  margin-top: 0.6rem;
+  background-color: var(--color-player);
+  padding: 1.2rem 1rem;
   display: flex;
 }
 
 .song-controls {
-  flex: 9;
+  flex: 7;
   padding: 0.6rem 1rem;
 }
 
@@ -254,7 +259,7 @@ nav .brand-heading {
 
 .song-title {
   font-size: 1.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: var(--color-gray);
 }
 
@@ -305,8 +310,8 @@ nav .brand-heading {
 }
 
 .thumb {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border-radius: 4px;
   background-color: var(--color-gray);
   background-size: cover;
@@ -413,8 +418,9 @@ nav .brand-heading {
   }
 }
 
-.home {
-  padding: 2rem;
+.playlist-songs {
+  background-color: var(--color-gray);
+  margin-bottom: 3rem;
 }
 
 .heading-primary {
@@ -452,4 +458,14 @@ nav .brand-heading {
   display: flex;
   gap: 2rem;
   font-family: sans-serif;
+}
+
+.song-index {
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin: 0 2rem 0 1rem;
+}
+
+.home {
+  padding: 2rem;
 }

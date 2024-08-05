@@ -3,11 +3,15 @@ import Controls from "./Controls";
 import { FaVolumeUp, FaVolumeDown } from "react-icons/fa";
 import ProgressBar from "./ProgressBar";
 import SongDetails from "./SongDetails";
+import { useSelector } from "react-redux";
 
-const Player = ({ song }) => {
+const Player = () => {
   const [isSelected, setIsSelected] = useState(false);
   const progressBarRef = useRef();
   const [volume, setVolume] = useState(60);
+
+  const { song } = useSelector((state) => state.playerSong);
+  console.log(song);
 
   const songName = isSelected && song.music.filename;
   // console.log(songName);
@@ -17,15 +21,15 @@ const Player = ({ song }) => {
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  useEffect(() => {
-    if (songName) {
-      // console.log(songName);
-      setIsSelected(true);
-    }
-  }, [songName, isSelected]);
+  // useEffect(() => {
+  //   if (songName) {
+  //     // console.log(songName);
+  //     setIsSelected(true);
+  //   }
+  // }, [songName, isSelected]);
 
   useEffect(() => {
-    if (Object.keys(song).length) {
+    if (song) {
       setIsSelected(true);
     }
   }, [song]);
@@ -55,13 +59,14 @@ const Player = ({ song }) => {
       />
 
       <div className="player-items">
-        <SongDetails song={song} />
+        {song && <SongDetails song={song} />}
 
         <div className="song-controls">
           <div className="controls-placement">
             <Controls
               audioRef={audioRef}
               isSelected={isSelected}
+              song={song}
               progressBarRef={progressBarRef}
               setTimeProgress={setTimeProgress}
               duration={duration}

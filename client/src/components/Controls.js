@@ -10,9 +10,6 @@ const Controls = ({
 }) => {
   const playAnimationRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
-  // console.log(isPlaying);
-  // console.log(isSelected);
-
   const repeat = useCallback(() => {
     // console.log("run");
     const currentTime = audioRef.current.currentTime;

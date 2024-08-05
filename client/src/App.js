@@ -48,12 +48,12 @@ function App() {
                   />
                 }
               />
-              <Route path="/playlist/1" element={<Playlist />} />
+              <Route path="/playlist/:id" element={<Playlist />} />
             </Routes>
           </div>
         </div>
         <div className="player-container">
-          {/* <Player song={songChosed} /> */}
+          {/* <Player /> */}
           <AudioPlayer />
         </div>
       </div>

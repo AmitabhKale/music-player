@@ -5,6 +5,7 @@ import playerSlice from "../redux/playerSlice";
 
 const Tracks = ({ songs }) => {
   // console.log(songs);
+  // let songIndex = 1
   const { playSong } = playerSlice.actions;
   const dispatch = useDispatch();
   function handleClick(song) {
@@ -17,9 +18,9 @@ const Tracks = ({ songs }) => {
   return (
     <div className="tracks">
       <ul className="playlist">
-        {songs.map((song) => (
+        {songs.map((song, i) => (
           <div key={song._id} className={"song"}>
-            {/* <div className=""> */}
+            <div className="song-index">{i + 1}</div>
             <div className="thumb"></div>
             <div className="body">
               <span
