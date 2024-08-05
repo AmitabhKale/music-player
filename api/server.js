@@ -24,7 +24,7 @@ const PORT = 5000;
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Serving song file
-app.get("/songs/:songName", (req, res) => {
+app.get("/songs/play/:songName", (req, res) => {
   const songName = req.params.songName;
   const filePath = path.join(__dirname, "uploads", songName);
   res.sendFile(filePath);

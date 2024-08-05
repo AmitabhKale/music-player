@@ -11,7 +11,7 @@ const Player = ({ song }) => {
 
   const songName = isSelected && song.music.filename;
   // console.log(songName);
-  const SONG_URL = `http://localhost:5000/songs/${songName}`;
+  const SONG_URL = `http://localhost:5000/songs/play/${songName}`;
 
   const audioRef = useRef();
   const [timeProgress, setTimeProgress] = useState(0);

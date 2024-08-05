@@ -1,13 +1,17 @@
 import React from "react";
 import { IoMdMore } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import playerSlice from "../redux/playerSlice";
 
-const Tracks = ({ songs, setSongChosed }) => {
+const Tracks = ({ songs }) => {
   // console.log(songs);
-
+  const { playSong } = playerSlice.actions;
+  const dispatch = useDispatch();
   function handleClick(song) {
     if (song) {
       console.log(song.title);
-      setSongChosed(song);
+      // setSongChosed(song);
+      dispatch(playSong(song));
     }
   }
   return (

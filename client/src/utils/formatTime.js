@@ -1,5 +1,3 @@
-import React from "react";
-
 const formatTime = (time) => {
   if (time && !isNaN(time)) {
     const minutes = Math.floor(time / 60);
