@@ -2,10 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongs } from "../redux/playlistSlice";
 import Tracks from "../components/Tracks";
+import Loader from "../components/Loader";
 
 const Test = () => {
   const dispatch = useDispatch();
-  const { songs } = useSelector((state) => state.playlistSongs);
+  const { songs, isLoading } = useSelector((state) => state.playlistSongs);
   console.log(songs);
   return (
     <div className="home">
@@ -17,7 +18,7 @@ const Test = () => {
         Add Songs
       </button>
 
-      <Tracks songs={songs} />
+      {isLoading ? <Loader /> : <Tracks songs={songs} />}
     </div>
   );
 };
