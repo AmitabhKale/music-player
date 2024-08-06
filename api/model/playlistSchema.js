@@ -6,7 +6,16 @@ const playlistSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    songs: [{ songid: mongoose.Schema.Types.ObjectId, ref: "Musics" }],
+    songs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Musics",
+      },
+    ],
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+    },
   },
   {
     timestamps: true,

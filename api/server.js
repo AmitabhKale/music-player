@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const dotenv = require("dotenv");
 
-const bodyParser = require("body-parser");
 const connectDB = require("./config/dbConn");
 
 const app = express();
+
+dotenv.config({});
 
 // connection
 connectDB();
@@ -19,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/music", require("./routes/musicRoute"));
+app.use("/api/user", require("./routes/userRoute"));
 
 const PORT = 5000;
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
