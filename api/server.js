@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/music", require("./routes/musicRoute"));
 app.use("/api/user", require("./routes/userRoute"));
+app.use("/api/playlist", require("./routes/playlistRoute"));
 
 const PORT = 5000;
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

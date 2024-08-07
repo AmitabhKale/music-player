@@ -10,7 +10,7 @@ const Tracks = ({ songs }) => {
   const dispatch = useDispatch();
   function handleClick(song) {
     if (song) {
-      console.log(song.title);
+      console.log(song);
       // setSongChosed(song);
       dispatch(playSong(song));
     }

@@ -49,6 +49,7 @@ const Login = () => {
                 type="email"
                 ref={emailId}
                 required
+                className="auth-input"
                 placeholder="Email Address"
               />
             </div>
@@ -60,6 +61,7 @@ const Login = () => {
                   type="password"
                   ref={password}
                   required
+                  className="auth-input"
                   placeholder="Password"
                 />
               </div>

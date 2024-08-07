@@ -5,6 +5,7 @@ import Test from "./pages/Test";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Layout from "./Layout";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path="/playlist/:id" element={<Playlist />} />
             </Route>
             <Route path="/login" element={<Login />} />
+            <Route path="/user/me" element={<Dashboard />} />
           </Routes>
         </div>
       </div>

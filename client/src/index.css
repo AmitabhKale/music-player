@@ -348,11 +348,18 @@ nav .brand-heading {
   /* gap: 1rem; */
 }
 .playlist-image {
-  height: 16rem;
-  width: 16rem;
+  height: 18rem;
+  width: 18rem;
   background-color: #00a0c6;
   border-radius: 8px;
 }
+
+.playlist-image img {
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+}
+
 .playlist-details {
   flex: 8;
 }
@@ -429,6 +436,22 @@ nav .brand-heading {
   font-weight: 600;
   border-bottom: 2px solid #ccc;
   display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+.heading-secondary {
+  color: var(--color-danger);
+  font-size: 2rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.heading-role {
+  color: var(--color-primary);
+  font-size: 2.4rem;
+  font-weight: 500;
+  display: block;
 }
 
 .playlist-card {
@@ -491,4 +514,104 @@ nav .brand-heading {
   padding: 0.6rem 1.8rem;
   border-radius: 24px;
   font-size: 1.2rem;
+}
+
+.song-form-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #bbb;
+  margin-bottom: 3rem;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.input-box {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.song-label {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+  flex: 3;
+}
+
+.song-input {
+  flex: 9;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.upload-box {
+  width: 100%;
+}
+
+.song-submit {
+  width: 100%;
+  background-color: #4caf50;
+  font-size: 1.6rem;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upload-card {
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  /* margin: 0 0 2rem auto; */
+  /* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3); */
+  /* width: 50rem; */
+  height: 18rem;
+  /* background-color: #ffffff; */
+  /* padding: 10px 30px 40px; */
+  display: flex;
+  align-items: center;
+}
+
+.upload-card h3 {
+  flex: 3;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.drop-box {
+  flex: 9;
+  /* margin: 10px 0; */
+  padding: 30px 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* border: 3px dotted #a3a3a3; */
+  border-radius: 5px;
+}
+
+.upload-btn {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  padding: 10px 20px;
+  border: none;
+  outline: 1px solid #010101;
 }

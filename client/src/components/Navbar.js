@@ -15,9 +15,17 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {user && (
+          {user ? (
             <div className="sub-menu">
-              <h3>{user.name}</h3>
+              <Link to={"/user/me"}>
+                <h3>{user.name}</h3>
+              </Link>
+            </div>
+          ) : (
+            <div className="sub-menu">
+              <Link to={"/login"}>
+                <h4>Login</h4>
+              </Link>
             </div>
           )}
         </div>

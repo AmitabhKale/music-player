@@ -14,7 +14,16 @@ const musicSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    imageURL: {
+      type: String,
+      required: true,
+      default:
+        "https://img.freepik.com/premium-photo/colorful-musical-notes-green-background-3d-illustration_1015980-609364.jpg?w=740",
+    },
     album: {
+      type: String,
+    },
+    genre: {
       type: String,
     },
   },

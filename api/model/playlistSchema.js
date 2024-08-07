@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 
 const playlistSchema = mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
     },
     songs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Musics",
+        ref: "Music",
       },
     ],
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      type: String,
+      required: true,
     },
   },
   {
