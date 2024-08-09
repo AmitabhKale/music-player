@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("music-user"));
 
 const initialState = {
   user: user ? user : null,
@@ -15,7 +15,7 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
     const res = await axios.post(API_URL, user);
     if (res.data) {
-      localStorage.setItem("user", JSON.stringify(res.data));
+      localStorage.setItem("music-user", JSON.stringify(res.data));
     }
 
     return res.data;
@@ -27,7 +27,11 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.user = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {

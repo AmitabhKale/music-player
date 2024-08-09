@@ -1,5 +1,5 @@
 import "./custom.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Playlist from "./pages/Playlist";
 import Test from "./pages/Test";
 import Home from "./pages/Home";
@@ -16,7 +16,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="/test" element={<Test />} />
-              <Route path="/playlist/:id" element={<Playlist />} />
+              <Route path="/playlists/:playlistId" element={<Playlist />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/user/me" element={<Dashboard />} />

@@ -1,22 +1,41 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-let API_URL = "http://localhost:5000/api/music";
+let PLAYLIST_API_URL = "http://localhost:5000/api/playlist";
 
 const initialState = {
-  songs: [],
+  playlists: [],
+  playlist: {},
   isLoading: false,
   isError: false,
   isSuccess: false,
   message: "",
 };
 
-export const getSongs = createAsyncThunk(
-  "playlist/getAll",
+export const getAllPlaylist = createAsyncThunk(
+  "playlist/getPlaylists",
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(API_URL);
-      //   console.log(res.data);
+      const { data } = await axios.get(PLAYLIST_API_URL);
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getPlaylistSongs = createAsyncThunk(
+  "playlist/getSongs",
+  async (playlistId, thunkAPI) => {
+    try {
+      console.log(playlistId);
+      const { data } = await axios.get(`${PLAYLIST_API_URL}/${playlistId}`);
       return data;
     } catch (error) {
       const message =
@@ -36,15 +55,28 @@ const playlistSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getSongs.pending, (state) => {
+      .addCase(getAllPlaylist.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getSongs.fulfilled, (state, action) => {
+      .addCase(getAllPlaylist.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.songs = action.payload;
+        state.playlists = action.payload;
       })
-      .addCase(getSongs.rejected, (state, action) => {
+      .addCase(getAllPlaylist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getPlaylistSongs.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPlaylistSongs.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.playlist = action.payload;
+      })
+      .addCase(getPlaylistSongs.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

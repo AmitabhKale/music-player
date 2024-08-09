@@ -35,9 +35,7 @@ const AddNewSong = ({ user }) => {
     <div className="song-form-container">
       <form onSubmit={handleSubmit}>
         <div className="input-box">
-          <label className="song-label" htmlFor="name">
-            Artist:
-          </label>
+          <label className="song-label">Artist:</label>
           <input
             type="text"
             value={user.name}
@@ -46,15 +44,11 @@ const AddNewSong = ({ user }) => {
           />
         </div>
         <div className="input-box">
-          <label className="song-label" htmlFor="name">
-            Song Name:
-          </label>
-          <input type="text" ref={nameRef} className="song-input" />
+          <label className="song-label">Song Name:</label>
+          <input name="name" type="text" ref={nameRef} className="song-input" />
         </div>
         <div className="input-box">
-          <label className="song-label" htmlFor="name">
-            Album:
-          </label>
+          <label className="song-label">Album:</label>
           <input type="text" ref={albumRef} className="song-input" />
         </div>
 
