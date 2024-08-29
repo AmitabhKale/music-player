@@ -12,13 +12,14 @@ const getAllMusic = async (req, res) => {
 };
 
 const addNewMusic = async (req, res) => {
-  const { title, artist } = req.body;
-  console.log(req.body.title, req.body.artist);
+  const { title } = req.body;
+  const { name } = req.user;
+  console.log(req.user.name);
   const musicFile = req.file;
   try {
     const music = new Music({
       title: title,
-      artist: artist,
+      artist: name,
       music: musicFile,
     });
 

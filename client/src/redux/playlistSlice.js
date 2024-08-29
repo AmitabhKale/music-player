@@ -49,6 +49,69 @@ export const getPlaylistSongs = createAsyncThunk(
   }
 );
 
+export const createPlaylist = createAsyncThunk(
+  "playlist/create",
+  async (playlistData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.user.token;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      console.log(playlistData);
+      console.log(token);
+      const { data } = await axios.post(
+        `${PLAYLIST_API_URL}/new`,
+        playlistData,
+        config
+      );
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const addSongToPlaylist = createAsyncThunk(
+  "playlist/addSong",
+  async (playlistInfo, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.user.token;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      console.log(playlistInfo);
+      console.log(token);
+      const { data } = await axios.post(
+        `${PLAYLIST_API_URL}/${playlistInfo.playlistId}`,
+        { songId: playlistInfo.songId },
+        config
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
@@ -77,6 +140,32 @@ const playlistSlice = createSlice({
         state.playlist = action.payload;
       })
       .addCase(getPlaylistSongs.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(createPlaylist.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createPlaylist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.playlist = action.payload;
+      })
+      .addCase(createPlaylist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(addSongToPlaylist.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addSongToPlaylist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.playlist = action.payload;
+      })
+      .addCase(addSongToPlaylist.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

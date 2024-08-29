@@ -6,8 +6,6 @@ Custom Input range
 
 input[type="range"] {
   --range-progress: 0;
-
-  -webkit-appearance: none;
   position: relative;
   background: #fff;
   width: 100%;

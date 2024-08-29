@@ -8,6 +8,9 @@ import { getSongs } from "../redux/songSlice";
 const Home = () => {
   const { playlists } = useSelector((state) => state.playlistSongs);
   const { songs } = useSelector((state) => state.songs);
+
+  const defaultImage =
+    "https://images.pexels.com/photos/1481309/pexels-photo-1481309.jpeg?auto=compress&cs=tinysrgb&w=600";
   console.log(songs);
   console.log(playlists);
   const dispatch = useDispatch();
@@ -24,7 +27,11 @@ const Home = () => {
         {playlists.map((item) => (
           <div key={item._id} className="playlist-card">
             <Link to={`playlists/${item._id}`}>
-              <div className="playlist-card-image"></div>
+              <img
+                src={item.image || defaultImage}
+                className="playlist-card-image"
+              />
+              {/* <img src={defaultImage} alt="" /> */}
             </Link>
             <Link to={`playlists/${item._id}`}>
               <h4>{item.title}</h4>

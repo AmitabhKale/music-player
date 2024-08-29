@@ -8,15 +8,18 @@ const addSongToPlaylist = async (req, res) => {
   try {
     const playlist = await Playlist.findById(playlistId);
 
+    // console.log(playlistId);
+
     // const song = await Music.findById(songId)
 
     if (!playlist) {
       throw new Error("No Playlist Exist");
     }
 
+    // if (playlist.createdBy === req.user._id) {
     playlist.songs.push(songId);
-
     await playlist.save();
+    // }
 
     res.status(201).json(playlist);
   } catch (e) {
@@ -28,15 +31,15 @@ const addSongToPlaylist = async (req, res) => {
 
 const createPlaylist = async (req, res) => {
   const { title } = req.body;
-  const { name } = req.user;
+  const { _id } = req.user;
   try {
-    if (!name) {
+    if (!_id) {
       throw new Error("User Must be Authenticated");
     }
 
     const playlist = await Playlist.create({
       title: title,
-      createdBy: name,
+      createdBy: _id,
     });
 
     res.status(200).json(playlist);
@@ -51,7 +54,9 @@ const getPlaylist = async (req, res) => {
   try {
     const { playlistId } = req.params;
 
-    const playlist = await Playlist.findById(playlistId).populate("songs");
+    const playlist = await Playlist.findById(playlistId)
+      .populate("createdBy")
+      .populate("songs");
 
     res.status(200).json(playlist);
   } catch (e) {

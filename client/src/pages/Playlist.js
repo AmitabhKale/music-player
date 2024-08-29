@@ -14,6 +14,9 @@ const Playlist = () => {
   );
   console.log(playlist, isLoading, isError);
 
+  const defaultImage =
+    "https://images.pexels.com/photos/1481309/pexels-photo-1481309.jpeg?auto=compress&cs=tinysrgb&w=600";
+
   useEffect(() => {
     dispatch(getPlaylistSongs(playlistId));
   }, [dispatch, playlistId]);
@@ -22,16 +25,22 @@ const Playlist = () => {
     <div className="playlist">
       <div className="playlist-banner">
         <div className="playlist-image-container">
-          <div className="playlist-image"></div>
+          <div className="playlist-image">
+            <img src={defaultImage} alt="" />
+          </div>
         </div>
-        <div className="playlist-details">
-          <h3 className="playlist-text">Playlist</h3>
-          <h2 className="playlist-heading">{playlist.title}</h2>
-          <h4 className="playlist-artist">{playlist.createdBy}</h4>
-        </div>
+        {playlist ? (
+          <div className="playlist-details">
+            <h3 className="playlist-text">Playlist</h3>
+            <h2 className="playlist-heading">{playlist.title}</h2>
+            <h4 className="playlist-artist">{playlist.createdBy?.name}</h4>
+          </div>
+        ) : (
+          <Loader />
+        )}
       </div>
       <div className="playlist-songs">
-        {playlist.songs ? <Tracks songs={playlist.songs} /> : <Loader />}
+        {playlist ? <Tracks songs={playlist.songs} /> : <Loader />}
       </div>
     </div>
   );

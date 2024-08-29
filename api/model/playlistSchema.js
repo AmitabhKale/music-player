@@ -6,6 +6,12 @@ const playlistSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      required: true,
+      default:
+        "https://images.pexels.com/photos/1481309/pexels-photo-1481309.jpeg?auto=compress&cs=tinysrgb&w=600",
+    },
     songs: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -13,8 +19,9 @@ const playlistSchema = mongoose.Schema(
       },
     ],
     createdBy: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
   },
   {
